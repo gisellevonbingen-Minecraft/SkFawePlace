@@ -1,0 +1,9 @@
+name: ${plugin_name}
+main: giselle.skript_fawe.SkriptFAWE
+version: ${plugin_version}
+api-version: 1.15
+depend: [ FastAsyncWorldEdit, Skript ]
+website: ${plugin_homepage}
+description: ${plugin_description}
+authors: [ Gisellevonbingen ]
+database: false
