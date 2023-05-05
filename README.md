@@ -12,20 +12,21 @@ Add 'fawe_place' effect.
 
 ## Pattern
 
-1. Default format
 ```
-fawe_place %string% %location% [rotate by %-number%]"
+fawe_place %string% [as %-string%] %location% [rotate by %-number%]
 ```
 
-2. Specific format
-```
-fawe_place %string% as %string% %location% [rotate by %-number%]"
-```
-Second %string% mean schematic file format from FastAsyncWorldEdit.
-Use first pattern if you don't know what enter at there.
+'as %-string%' mean schematic file format from FastAsyncWorldEdit.
+Skip it, if you don't know what should enter at there.
 
 ## Example
 
+1. Place 'wool' schematic file at x:100, y:140, z:100 in The Nether
 ```
-fawe_place "wools" location at 100, 140, 100 in world "world_nether" rotate by 90
+fawe_place "wools" location at 100, 140, 100 in world "world_nether"
+```
+
+1. Place 'poles.nbt' file at x:100, y:140, z:100 in Overworld
+```
+fawe_place "poles" as "structure" location at 100, 140, 100 rotate by 90
 ```

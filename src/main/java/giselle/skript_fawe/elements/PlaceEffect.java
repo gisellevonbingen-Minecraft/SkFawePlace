@@ -27,11 +27,7 @@ public class PlaceEffect extends Effect
 {
 	static
 	{
-		Skript.registerEffect(PlaceEffect.class, //
-				"fawe_place %string% %location% [rotate by %-number%]", //
-				"fawe_place %string% as %string% %location% [rotate by %-number%]"//
-
-		);
+		Skript.registerEffect(PlaceEffect.class, "fawe_place %string% [as %-string%] %location% [rotate by %-number%]");
 	}
 
 	private Expression<String> fileName = null;
@@ -45,16 +41,7 @@ public class PlaceEffect extends Effect
 	{
 		int i = 0;
 		this.fileName = (Expression<String>) exprs[i++];
-
-		if (matchedPattern == 1)
-		{
-			this.formatName = (Expression<String>) exprs[i++];
-		}
-		else
-		{
-			this.formatName = null;
-		}
-
+		this.formatName = (Expression<String>) exprs[i++];
 		this.location = (Expression<Location>) exprs[i++];
 		this.rotate = (Expression<Number>) exprs[i++];
 		return true;
