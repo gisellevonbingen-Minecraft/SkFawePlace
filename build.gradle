@@ -12,35 +12,35 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 println "Java: ${System.getProperty "java.version"}, JVM: ${System.getProperty "java.vm.version"} (${System.getProperty "java.vendor"}), Arch: ${System.getProperty "os.arch"}"
 
 tasks.withType(JavaCompile) {
-	options.encoding = "UTF-8"
-	options.release = 17
+    options.encoding = "UTF-8"
+    options.release = 17
 }
 
 java {
-	withSourcesJar()
+    withSourcesJar()
 }
 
 repositories {
-	maven {
-		url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
-	}
-	maven {
-		url "https://repo.papermc.io/repository/maven-public/"
-	}
-	maven {
-		url "https://oss.sonatype.org/content/repositories/snapshots/"
-	}
-	maven {
-		url "https://repo.skriptlang.org/releases/"
-	}
+    maven {
+        url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+    }
+    maven {
+        url "https://repo.papermc.io/repository/maven-public/"
+    }
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+    maven {
+        url "https://repo.skriptlang.org/releases/"
+    }
 }
 
 dependencies {
-	compileOnly "org.spigotmc:spigot-api:${mc_version}-${spigot_version}-SNAPSHOT"
+    compileOnly "org.spigotmc:spigot-api:${mc_version}-${spigot_version}-SNAPSHOT"
     compileOnly(platform("com.intellectualsites.bom:bom-1.18.x:1.27"))
     compileOnly "com.fastasyncworldedit:FastAsyncWorldEdit-Core:${fawe_version}"
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:${fawe_version}") { transitive = false }
-	compileOnly "com.github.SkriptLang:Skript:${skript_version}"
+    compileOnly "com.github.SkriptLang:Skript:${skript_version}"
 }
 
 def resourceTargets = ["plugin.yml"]

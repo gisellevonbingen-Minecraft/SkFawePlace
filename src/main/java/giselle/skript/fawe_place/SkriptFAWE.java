@@ -1,4 +1,4 @@
-package giselle.skript_fawe;
+package giselle.skript.fawe_place;
 
 import java.io.File;
 import java.io.FileInputStream;

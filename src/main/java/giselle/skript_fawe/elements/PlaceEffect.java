@@ -20,8 +20,8 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
-import giselle.skript_fawe.PluginActor;
-import giselle.skript_fawe.SkriptFAWE;
+import giselle.skript.fawe_place.PluginActor;
+import giselle.skript.fawe_place.SkriptFAWE;
 
 public class PlaceEffect extends Effect
 {
