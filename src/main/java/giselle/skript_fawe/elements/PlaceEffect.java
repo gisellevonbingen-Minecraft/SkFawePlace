@@ -55,7 +55,7 @@ public class PlaceEffect extends Effect
 
 		if (this.formatName != null)
 		{
-			builder.append(" ").append(this.formatName.toString(e, debug));
+			builder.append(" as ").append(this.formatName.toString(e, debug));
 		}
 
 		builder.append(" ").append(this.location.toString(e, debug));
