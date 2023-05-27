@@ -13,11 +13,15 @@ Add 'fawe_place' effect.
 ## Pattern
 
 ```
-fawe_place %string% [as %-string%] %location% [rotate by %-number%]
+1. fawe_place %string% [as %-string%] %location% [rotate by %-number%]
+2. fawe_place %string% [as %-string%] %location% [rotate by %-number%] with entity
 ```
 
 'as %-string%' mean schematic file format from FastAsyncWorldEdit.
 Skip it, if you don't know what should enter at there.
+
+with entity mean paste entities, if give option -e when you saved schematic file
+
 
 ## Example
 

@@ -1,4 +1,4 @@
-package giselle.skript_fawe.elements;
+package giselle.skript.fawe_place.elements;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -8,6 +8,8 @@ import org.bukkit.Location;
 import org.bukkit.event.Event;
 
 import com.fastasyncworldedit.core.FaweAPI;
+import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.function.operation.Operation;
 import com.sk89q.worldedit.function.operation.Operations;
 import com.sk89q.worldedit.math.BlockVector3;
@@ -27,13 +29,15 @@ public class PlaceEffect extends Effect
 {
 	static
 	{
-		Skript.registerEffect(PlaceEffect.class, "fawe_place %string% [as %-string%] %location% [rotate by %-number%]");
+		String base = "fawe_place %string% [as %-string%] %location% [rotate by %-number%]";
+		Skript.registerEffect(PlaceEffect.class, base, base + " with entity");
 	}
 
 	private Expression<String> fileName = null;
 	private Expression<String> formatName = null;
 	private Expression<Location> location = null;
 	private Expression<Number> rotate = null;
+	private boolean withEntity = false;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -44,6 +48,8 @@ public class PlaceEffect extends Effect
 		this.formatName = (Expression<String>) exprs[i++];
 		this.location = (Expression<Location>) exprs[i++];
 		this.rotate = (Expression<Number>) exprs[i++];
+		this.withEntity = matchedPattern == 1;
+
 		return true;
 	}
 
@@ -65,6 +71,11 @@ public class PlaceEffect extends Effect
 			builder.append(" rotate by ").append(this.rotate.toString(e, debug));
 		}
 
+		if (this.withEntity == true)
+		{
+			builder.append(" with entity");
+		}
+
 		return builder.toString();
 	}
 
@@ -83,6 +94,7 @@ public class PlaceEffect extends Effect
 		{
 			ClipboardHolder holder = plugin.load(actor, fileName, formatName);
 			com.sk89q.worldedit.world.World fawe_world = FaweAPI.getWorld(location.getWorld().getName());
+			EditSession session = WorldEdit.getInstance().newEditSessionBuilder().world(fawe_world).fastMode(true).build();
 			BlockVector3 at = BlockVector3.at(location.getX(), location.getY(), location.getZ());
 
 			if (rotate != null)
@@ -92,9 +104,10 @@ public class PlaceEffect extends Effect
 				holder.setTransform(transform.combine(holder.getTransform()));
 			}
 
-			PasteBuilder paste = holder.createPaste(fawe_world);
-			Operation operation = paste.to(at).build();
+			PasteBuilder paste = holder.createPaste(session);
+			Operation operation = paste.to(at).copyEntities(this.withEntity).build();
 			Operations.completeLegacy(operation);
+			session.flushQueue();
 		}
 		catch (IOException | URISyntaxException ex)
 		{

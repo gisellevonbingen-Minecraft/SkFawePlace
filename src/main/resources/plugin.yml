@@ -1,5 +1,5 @@
 name: ${plugin_name}
-main: giselle.skript_fawe.SkriptFAWE
+main: giselle.skript.fawe_place.SkriptFAWE
 version: ${plugin_version}
 api-version: 1.15
 depend: [ FastAsyncWorldEdit, Skript ]
